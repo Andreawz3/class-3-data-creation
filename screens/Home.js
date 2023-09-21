@@ -1,10 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native';
 import { useState } from 'react'
+import { Searchbar } from 'react-native-paper';
 
 export default function Home({navigation}) {
 
     const [number, setNumber] = useState(1);
+    const [searchQuery, setSearchQuery] = useState('');
+    const onChangeSearch = query => setSearchQuery(query);
 
     const check = () => {
         
@@ -21,6 +24,11 @@ export default function Home({navigation}) {
 
     return (
         <View style={styles.container}>
+            <Searchbar
+                placeholder="Search"
+                onChangeText={onChangeSearch}
+                value={searchQuery}
+            />
             <TouchableOpacity   onPress={() => check()} 
                                 style={number === 1 ? styles.btnBlue : 
                                                 number === 2 ? styles.btnRed : styles.btnGreen }>
@@ -32,10 +40,11 @@ export default function Home({navigation}) {
 
 const styles = StyleSheet.create({
     container: {
+        backgroundColor: '#E4E6C3',
         flex: 1,
-        backgroundColor: '#fff',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-evenly',
+        
     },
     btnBlue: {
         alignItems: 'center',

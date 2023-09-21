@@ -20,7 +20,7 @@ export default function App() {
             options={{
               title: 'Welcome!',
               headerStyle: {
-                backgroundColor: '#f4511e',
+                backgroundColor: '#899878',
               },
               headerTintColor: '#fff',
               headerTitleStyle: {

@@ -1,7 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, View, Button, Text } from 'react-native';
 import { bookStore } from '../data/books'
 import { useState } from 'react'
+import { List, Divider } from 'react-native-paper';
 
 export default function About({navigation}) {
 
@@ -15,19 +16,23 @@ export default function About({navigation}) {
     return (
         <View style={styles.container}>
             <Text>Welcome to the dashboard</Text>
-            <Button title="Show data" onPress={() => addingData()}/>
+            <Button style={styles.button} title="Show data" onPress={() => addingData()}/>
             {
                 data && data.books.map((b, index) => {
                     if(b.category.toLowerCase() == "java") {
                         return (
                             <View key={index}>
-                                <Text>{b.title}</Text>
+                                <Text style={styles.title}>{b.title}:</Text>
                             {
                                 b.authors && b.authors.map((a, ind) => {
                                     return(
-                                        <Text key={ind}>
-                                            {a}
-                                        </Text>
+                                        <View key={ind}>
+                                            <List.Item
+                                                description={a}
+                                                left={props => <List.Icon {...props} icon="equal" />}
+                                            />
+                                            <Divider />
+                                        </View>                                   
                                     )
                                 })
                             }
@@ -42,9 +47,14 @@ export default function About({navigation}) {
 
 const styles = StyleSheet.create({
     container: {
+        backgroundColor: '#E4E6C3',
         flex: 1,
-        backgroundColor: '#fff',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-evenly',
     },
+    title: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
 });

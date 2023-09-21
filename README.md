@@ -2,6 +2,9 @@
 
 ## Installations
 npm install react-native-paper
+npx expo start
 
-## Put
-React Native Paper
+## React Native Paper
+* Searchbar
+* List
+* Divider
